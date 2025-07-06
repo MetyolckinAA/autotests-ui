@@ -1,4 +1,4 @@
 
 *.xml
 /.idea
-__pycache__/playwright_disabled.cpython-312.pyc
+*pycache*
