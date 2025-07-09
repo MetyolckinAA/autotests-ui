@@ -16,13 +16,3 @@ def test_wrong_email_or_password_authorization(chromium_page: Page):
     wrong_email_or_password_alert = chromium_page.get_by_test_id('login-page-wrong-email-or-password-alert')
     expect(wrong_email_or_password_alert).to_be_visible()
     expect(wrong_email_or_password_alert).to_have_text('Wrong email or password')
-
-
-    # with sync_playwright() as playwright:
-    #     browser = playwright.chromium.launch(headless=False)
-    #     context = browser.new_context(storage_state="browser-state.json") # Указываем файл с сохраненным состоянием
-    #     page = context.new_page()
-    #
-    #     page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard")
-    #
-    #     page.wait_for_timeout(5000)
