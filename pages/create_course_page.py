@@ -52,7 +52,7 @@ class CreateCoursePage(BasePage):
     def click_create_course_button(self):
         self.create_course_button.click()
 
-    def check_visible_create_course_button(self):
+    def check_visibility_create_course_button(self):
         expect(self.create_course_button).to_be_visible()
 
     def check_disabled_create_course_button(self):
@@ -138,17 +138,17 @@ class CreateCoursePage(BasePage):
         self.create_course_min_score_input.fill(min_score)
         expect(self.create_course_min_score_input).to_have_value(min_score)
 
-    def check_visible_exercises_title(self):
+    def check_visibility_exercises_title(self):
         expect(self.exercises_title).to_be_visible()
         expect(self.exercises_title).to_have_text('Exercises')
 
-    def check_visible_create_exercise_button(self):
+    def check_visibility_create_exercise_button(self):
         expect(self.create_exercise_button).to_be_visible()
 
     def click_create_exercise_button(self):
         self.create_exercise_button.click()
 
-    def check_visible_exercises_empty_view(self):
+    def check_visibility_exercises_empty_view(self):
         expect(self.exercises_empty_view_icon).to_be_visible()
 
         expect(self.exercises_empty_view_title).to_be_visible()

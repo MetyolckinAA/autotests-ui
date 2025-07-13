@@ -37,7 +37,7 @@ class CoursesListPage(BasePage):
         expect(self.empty_view_description).to_be_visible()
         expect(self.empty_view_description).to_have_text('Results from the load test pipeline will be displayed here')
 
-    def check_visible_create_course_button(self):
+    def check_visibility_create_course_button(self):
         expect(self.create_course_button).to_be_visible()
         # self.create_course_button.click()
 
