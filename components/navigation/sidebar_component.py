@@ -1,17 +1,28 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
+import re
+
+from components.base_component import BaseComponent
+from components.navigation.sidebar_list_item_component import SidebarListItemComponent
 
 
-class SidebarComponent:
-    def __init__(self, page):
-        self.users_list_item = page.get_by_test_id('users-list-item')
-        self.courses_list_item = page.get_by_test_id('courses-list-item')
-        self.accounts_list_item = page.get_by_test_id('accounts-list-item')
+class SidebarComponent(BaseComponent):
+    def __init__(self, page: Page):
+        super().__init__(page)
 
-    def navigate_to_users_page(self):
-        self.users_list_item.click()
+        self.logout_list_item = SidebarListItemComponent(page, 'logout')
+        self.courses_list_item = SidebarListItemComponent(page, 'courses')
+        self.dashboard_list_item = SidebarListItemComponent(page, 'dashboard')
 
-    def navigate_to_courses_page(self):
-        self.courses_list_item.click()
+    def check_visibility(self):
+        self.logout_list_item.check_visibility('Logout')
+        self.logout_list_item.check_visibility('Courses')
+        self.logout_list_item.check_visibility('Dashboard')
 
-    def navigate_to_accounts_page(self):
-        self.accounts_list_item.click()
+    def click_logout(self):
+        self.logout_list_item.navigate(re.compile(r".*/#/auth/login"))
+
+    def click_courses(self):
+        self.courses_list_item.navigate(re.compile(r".*/#/courses"))
+
+    def click_dashboard(self):
+        self.dashboard_list_item.navigate(re.compile(r".*/#/dashboard"))

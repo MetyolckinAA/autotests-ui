@@ -37,7 +37,7 @@ class DashboardPage(BasePage):
         expect(self.activities_title).to_have_text('Activities')
         expect(self.activities_chart).to_be_visible()
 
-    def check_visibility_courses_title_chart(self):
+    def check_visibility_courses_score_chart(self):
         expect(self.scores_title).to_be_visible()
         expect(self.scores_title).to_have_text('Scores')
         expect(self.scores_chart).to_be_visible()
