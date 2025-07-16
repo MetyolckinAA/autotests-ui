@@ -12,8 +12,7 @@ def test_empty_courses_list(courses_list_page: CoursesListPage):
     courses_list_page.navbar.check_visibility('username')
     courses_list_page.sidebar.check_visibility()
 
-    courses_list_page.check_visibility_courses_title()
-    courses_list_page.check_visibility_create_course_button()
+    courses_list_page.toolbar_view.check_visibility()
     courses_list_page.check_visibility_empty_view()
 
 
@@ -24,8 +23,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
 
     create_course_page.check_visibility_create_course_title()
     create_course_page.check_disabled_create_course_button()
-    create_course_page.check_visible_image_preview_empty_view()
-    create_course_page.check_visibility_image_upload_view()
+    create_course_page.image_upload_widget.check_visibility(is_image_uploaded=False)
     create_course_page.check_visibility_create_course_form(
         title="",
         estimated_time="",
@@ -37,24 +35,19 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     create_course_page.check_visibility_create_exercise_button()
     create_course_page.check_visibility_exercises_empty_view()
 
-    create_course_page.upload_preview_image(file='./testdata/files/image.png')
-    create_course_page.check_visibility_image_upload_view()
+    create_course_page.image_upload_widget.upload_preview_image(file='./testdata/files/image.png')
+    create_course_page.image_upload_widget.check_visibility(is_image_uploaded=True)
 
     create_course_page.fill_create_course_form(
         title = "Playwright",
-        estimated_time="2 weeks",
         description="Playwright",
         max_score="100",
-        min_score="10"
+        min_score="10",
+        estimated_time="2 weeks"
     )
     create_course_page.click_create_course_button()
 
-    courses_list_page.check_visibility_courses_title()
-    courses_list_page.check_visibility_create_course_button()
-    courses_list_page.check_visibility_course_card(
-        index=0,
-        title="Playwright",
-        estimated_time="2 weeks",
-        max_score="100",
-        min_score="10"
+    courses_list_page.toolbar_view.check_visibility()
+    courses_list_page.course_view.check_visibility(
+        index=0, title="Playwright", max_score="100", min_score="10", estimated_time="2 weeks"
     )
