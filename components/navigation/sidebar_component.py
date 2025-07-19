@@ -14,9 +14,9 @@ class SidebarComponent(BaseComponent):
         self.dashboard_list_item = SidebarListItemComponent(page, 'dashboard')
 
     def check_visibility(self):
-        self.logout_list_item.check_visibility('Logout', identifier='logout')
-        self.courses_list_item.check_visibility('Courses', identifier='courses')
-        self.dashboard_list_item.check_visibility('Dashboard', identifier='dashboard')
+        self.logout_list_item.check_visibility('Logout')
+        self.courses_list_item.check_visibility('Courses')
+        self.dashboard_list_item.check_visibility('Dashboard')
 
     def click_logout(self):
         self.logout_list_item.navigate(re.compile(r".*/#/auth/login"))
