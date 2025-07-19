@@ -9,6 +9,8 @@ from components.navigation.navbar_component import NavbarComponent
 from components.views.empty_view_component import EmptyViewComponent
 from components.views.image_upload_widget_component import ImageUploadWidgetComponent
 from pages.base_page import BasePage
+from elements.text import Text
+from elements.button import Button
 
 
 class CreateCoursePage(BasePage):
@@ -24,11 +26,12 @@ class CreateCoursePage(BasePage):
         self.create_course_toolbar_view = CreateCourseToolbarViewComponent(page)
         self.create_course_exercise_toolbar_view = CreateCourseExercisesToolbarViewComponent(page)
 
-        self.exercises_title = page.get_by_test_id('create-course-exercises-box-toolbar-title-text')
-        self.create_exercise_button = page.get_by_test_id('create-course-exercises-box-toolbar-create-exercise-button')
+        self.exercises_title = Text(page, 'create-course-exercises-box-toolbar-title-text', 'Exercise title')
+        self.create_exercise_button = Button(page, 'create-course-exercises-box-toolbar-create-exercise-button',
+                                             'Create exercise button')
 
     def check_visibility_create_course_button(self):
-        expect(self.check_visibility_create_course_button).to_be_visible()
+        self.create_exercise_button.check_visibility()
 
     def check_visibility_exercises_empty_view(self):
         self.exercises_empty_view.check_visibility(
