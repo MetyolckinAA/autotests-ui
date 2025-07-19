@@ -1,6 +1,3 @@
-import time
-
-from playwright.sync_api import sync_playwright, expect
 import pytest
 from pages.create_course_page import CreateCoursePage
 from pages.courses_list_page import CoursesListPage
