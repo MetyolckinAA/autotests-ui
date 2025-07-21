@@ -7,7 +7,7 @@ from pages.courses.courses_list_page import CoursesListPage
 from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
-from tools.allure.stories import AllureStories
+from tools.allure.stories import AllureStory
 
 
 @pytest.mark.courses
@@ -15,7 +15,10 @@ from tools.allure.stories import AllureStories
 @allure.tag(AllureTag.REGRESSION, AllureTag.COURSES)
 @allure.epic(AllureEpic.LMS)
 @allure.feature(AllureFeature.COURSES)
-@allure.story(AllureStories.COURSES)
+@allure.story(AllureStory.COURSES)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.COURSES)
+@allure.sub_suite(AllureStory.COURSES)
 class TestCourses:
     @allure.title('Check displaying of empty courses list')
     @allure.severity(Severity.NORMAL)
@@ -66,6 +69,8 @@ class TestCourses:
             estimated_time="2 weeks"
         )
 
+    @allure.title('Test edit course')
+    @allure.severity(Severity.CRITICAL)
     def test_edit_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
 

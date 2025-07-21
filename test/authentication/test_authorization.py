@@ -8,7 +8,7 @@ from pages.dashboard.dashboard_page import DashboardPage
 from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
-from tools.allure.stories import AllureStories
+from tools.allure.stories import AllureStory
 
 
 @pytest.mark.regression
@@ -16,7 +16,10 @@ from tools.allure.stories import AllureStories
 @allure.tag(AllureTag.REGRESSION, AllureTag.AUTHORIZATION)
 @allure.epic(AllureEpic.LMS)
 @allure.feature(AllureFeature.AUTHENTICATION)
-@allure.story(AllureStories.AUTHORIZATION)
+@allure.story(AllureStory.AUTHORIZATION)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.AUTHENTICATION)
+@allure.sub_suite(AllureStory.AUTHORIZATION)
 class TestAuthorization:
     @allure.tag(AllureTag.USER_LOGIN)
     @allure.title('Successfully authorization with correct email, username and password')
