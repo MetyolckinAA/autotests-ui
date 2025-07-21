@@ -1,12 +1,24 @@
 import pytest
+import allure
+from allure_commons.types import Severity
 
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
+from tools.allure.tags import AllureTag
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStories
 
 
 @pytest.mark.regression
 @pytest.mark.authorization
+@allure.tag(AllureTag.REGRESSION, AllureTag.REGISTRATION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.AUTHENTICATION)
+@allure.story(AllureStories.REGISTRATION)
 class TestRegistration:
+    @allure.title('Registration with correct email, username and password')
+    @allure.severity(Severity.CRITICAL)
     def test_successful_registration(self, registration_page: RegistrationPage, dashboard_page: DashboardPage):
         email = 'user@gmail.com'
         username = 'my user'
