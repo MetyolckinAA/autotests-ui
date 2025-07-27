@@ -1,23 +1,27 @@
 from enum import Enum
 from typing import Self
 
-from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath, BaseModel
+from pydantic import EmailStr, FilePath, HttpUrl, DirectoryPath
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class Browsers(str, Enum):
+class Browser(str, Enum):
     WEBKIT = "webkit"
     FIREFOX = "firefox"
     CHROMIUM = "chromium"
 
 
-class TestUser(BaseModel):
+class TestUser(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="TEST_USER")
+
     email: EmailStr
     username: str
     password: str
 
 
-class TestData(BaseModel):
+class TestData(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="TEST_DATA")
+
     image_png_file: FilePath
 
 
@@ -30,7 +34,7 @@ class Settings(BaseSettings):
 
     app_url: HttpUrl
     headless: bool
-    browsers: list[Browsers]
+    browsers: list[Browser]
     test_user: TestUser
     test_data: TestData
     videos_dir: DirectoryPath
@@ -57,6 +61,4 @@ class Settings(BaseSettings):
         )
 
 
-
 settings = Settings.initialize()
-

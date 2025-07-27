@@ -1,3 +1,5 @@
+import time
+
 import pytest
 import allure
 from allure_commons.types import Severity
@@ -24,7 +26,7 @@ from tools.routes import AppRoute
 @allure.sub_suite(AllureStory.AUTHORIZATION)
 class TestAuthorization:
     @allure.tag(AllureTag.USER_LOGIN)
-    @allure.title('Successfully authorization with correct email, username and password')
+    @allure.title("User login with correct email and password")
     @allure.severity(Severity.BLOCKER)
     def test_successful_authorization(
             self,
@@ -38,15 +40,16 @@ class TestAuthorization:
             username=settings.test_user.username,
             password=settings.test_user.password
         )
-        registration_page.registration_button.click()
+        registration_page.click_registration_button()
 
         dashboard_page.toolbar_view.check_visibility()
         dashboard_page.navbar.check_visibility(settings.test_user.username)
         dashboard_page.sidebar.check_visibility()
+        dashboard_page.reload()
         dashboard_page.sidebar.click_logout()
 
         login_page.login_form.fill(email=settings.test_user.email, password=settings.test_user.password)
-        login_page.login_button.click()
+        login_page.click_login_button()
 
         dashboard_page.toolbar_view.check_visibility()
         dashboard_page.navbar.check_visibility(settings.test_user.username)
