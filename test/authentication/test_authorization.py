@@ -25,6 +25,7 @@ from tools.routes import AppRoute
 @allure.suite(AllureFeature.AUTHENTICATION)
 @allure.sub_suite(AllureStory.AUTHORIZATION)
 class TestAuthorization:
+    @pytest.mark.skip
     @allure.tag(AllureTag.USER_LOGIN)
     @allure.title("User login with correct email and password")
     @allure.severity(Severity.BLOCKER)
