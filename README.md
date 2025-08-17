@@ -19,7 +19,8 @@ To get started, clone the project repository using Git:
 
 ```bash
 git clone https://github.com/MetyolckinAA/autotests-ui.git
-cd autotests-ui```
+cd autotests-ui
+```
 
 ### Create a Virtual Environment
 

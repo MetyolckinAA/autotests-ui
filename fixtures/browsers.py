@@ -31,6 +31,7 @@ def initialize_browser_state(playwright: Playwright):
         password=settings.test_user.password
     )
     registration_page.click_registration_button()
+    page.wait_for_timeout(500)
 
     context.storage_state(path=settings.browser_state_file)
     browser.close()
